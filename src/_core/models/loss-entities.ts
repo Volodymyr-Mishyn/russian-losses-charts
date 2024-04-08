@@ -28,7 +28,7 @@ export type EntitiesMap = {
   [k in EntityCategories]: Array<EntityNamesEnum>;
 };
 
-export const ALL__ENTITIES: Array<EntityNamesEnum> = [
+export const ALL_ENTITIES: Array<EntityNamesEnum> = [
   EntityNamesEnum.personnel,
   EntityNamesEnum.tank,
   EntityNamesEnum.armoredFightingVehicle,
@@ -45,6 +45,7 @@ export const ALL__ENTITIES: Array<EntityNamesEnum> = [
   EntityNamesEnum.carCistern,
 ];
 
+export const ALL_ENTITIES_SET: Set<EntityNamesEnum> = new Set(ALL_ENTITIES);
 export const ENTITIES_MAP: EntitiesMap = {
   [EntityCategories.personnel]: [EntityNamesEnum.personnel],
   [EntityCategories.groundVehicles]: [
