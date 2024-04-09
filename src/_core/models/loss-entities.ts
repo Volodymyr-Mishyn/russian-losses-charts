@@ -46,6 +46,7 @@ export const ALL_ENTITIES: Array<EntityNamesEnum> = [
 ];
 
 export const ALL_ENTITIES_SET: Set<EntityNamesEnum> = new Set(ALL_ENTITIES);
+
 export const ENTITIES_MAP: EntitiesMap = {
   [EntityCategories.personnel]: [EntityNamesEnum.personnel],
   [EntityCategories.groundVehicles]: [
