@@ -18,15 +18,20 @@ type UseQueryParamsReturn = [
 ];
 
 export function useQueryParams(): UseQueryParamsReturn {
-  const [selectedEntities, setSelectedEntities] = useState<EntityNamesEnum[]>(BASIC_ENTITIES_FILTER);
-  const startDateObject = DATE_OF_INVASION_INSTANCE;
-  const endDateObject = new Date();
-  const [startDate, setStartDate] = useState<string>(dateFormatter(startDateObject));
-  const [endDate, setEndDate] = useState<string>(dateFormatter(endDateObject));
-
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const initialEntities = (searchParams.get("entities")?.split(",") || []) as Array<EntityNamesEnum>;
+
+  const [selectedEntities, setSelectedEntities] = useState<EntityNamesEnum[]>(
+    validateEntities(initialEntities) as Array<EntityNamesEnum>
+  );
+
+  const startDateQuery = searchParams.get("start") as string | null;
+  const endDateQuery = searchParams.get("end") as string | null;
+  const [start, end] = validateDates(startDateQuery, endDateQuery);
+  const [startDate, setStartDate] = useState<string>(start);
+  const [endDate, setEndDate] = useState<string>(end);
 
   const createQueryString = useCallback(
     (newParams: Array<[string, string]>) => {
@@ -64,13 +69,15 @@ export function useQueryParams(): UseQueryParamsReturn {
   useEffect(() => {
     const entities = searchParams.get("entities");
     const queryEntities = entities ? ((entities as string).split(",") as EntityNamesEnum[]) : [];
+    const processedSelectedEntities = validateEntities(queryEntities);
+    setSelectedEntities(processedSelectedEntities as EntityNamesEnum[]);
+
     const startDateQuery = searchParams.get("start") as string | null;
     const endDateQuery = searchParams.get("end") as string | null;
-    const processedSelectedEntities = validateEntities(queryEntities);
     const [start, end] = validateDates(startDateQuery, endDateQuery);
-    setSelectedEntities(processedSelectedEntities as EntityNamesEnum[]);
     setStartDate(start);
     setEndDate(end);
+
     if (startDateQuery !== start || endDateQuery !== end) {
       updateQueryDates(start, end);
     }
