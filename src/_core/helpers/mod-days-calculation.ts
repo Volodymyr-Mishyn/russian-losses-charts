@@ -1,17 +1,17 @@
 import {
   CalculatedData,
   CalculatedIncrement,
-  DataFlat,
+  RussianLossesData,
   DayResultData,
   EntityLossFlat,
   EntityNamesEnum,
-} from "../models/loss-entities";
+} from '../models/loss-entities';
 
 export function calculateDaysData(
-  inputData: DataFlat,
+  inputData: RussianLossesData,
   averageData: CalculatedData,
   summaryData: CalculatedData
-): DataFlat {
+): RussianLossesData {
   return inputData.map((dayResult) => {
     const { data } = dayResult;
     const updatedData: DayResultData = Object.fromEntries(

@@ -1,27 +1,27 @@
 export enum EntityNamesEnum {
-  tank = "tank",
-  armoredFightingVehicle = "armored_fighting_vehicle",
-  artillerySystem = "artillery_system",
-  MLRS = "mlrs",
-  antiAircraft = "anti_aircraft",
-  plane = "plane",
-  helicopter = "helicopter",
-  UAV = "uav",
-  cruiseMissile = "cruise_missile",
-  ship = "ship",
-  submarine = "submarine", //14.09.2023
-  carCistern = "car_cistern",
-  specialEquipment = "special_equipment",
-  personnel = "personnel",
+  tank = 'tank',
+  armoredFightingVehicle = 'armored_fighting_vehicle',
+  artillerySystem = 'artillery_system',
+  MLRS = 'mlrs',
+  antiAircraft = 'anti_aircraft',
+  plane = 'plane',
+  helicopter = 'helicopter',
+  UAV = 'uav',
+  cruiseMissile = 'cruise_missile',
+  ship = 'ship',
+  submarine = 'submarine', //14.09.2023
+  carCistern = 'car_cistern',
+  specialEquipment = 'special_equipment',
+  personnel = 'personnel',
 }
 
 export enum EntityCategories {
-  personnel = "personnel",
-  groundVehicles = "groundVehicles",
-  artilleryVehicles = "artilleryVehicles",
-  antiAircraftVehicles = "antiAircraftVehicles",
-  aircraftVehicles = "aircraftVehicles",
-  waterVehicles = "waterVehicles",
+  personnel = 'personnel',
+  groundVehicles = 'groundVehicles',
+  artilleryVehicles = 'artilleryVehicles',
+  antiAircraftVehicles = 'antiAircraftVehicles',
+  aircraftVehicles = 'aircraftVehicles',
+  waterVehicles = 'waterVehicles',
 }
 
 export type EntitiesMap = {
@@ -99,39 +99,17 @@ export interface DayResultFlat {
   data: DayResultData;
 }
 
-export type DataFlat = Array<DayResultFlat>;
-
-export type RankingsFormat = "days" | "weeks" | "months";
-
-export interface RankingsPlace {
-  place: number;
-  daysInPeriod: number;
-  dates: {
-    start: string;
-    end: string;
-  };
-  daysOfInvasion: {
-    start: number;
-    end: number;
-  };
-  increment: number;
-  format: RankingsFormat;
+export interface DayResultFlatProcessed {
+  date: Date;
+  dayOfInvasion: number;
+  data: DayResultData;
 }
 
-export interface Rankings {
-  entityName: EntityNamesEnum;
-  places: Array<RankingsPlace>;
+export interface DayResultFlatPartial {
+  date: Date;
+  dayOfInvasion: number;
+  data: Partial<DayResultData>;
 }
 
-export interface FullRankings {
-  daily: Array<Rankings>;
-  weekly: Array<Rankings>;
-  monthly: Array<Rankings>;
-}
-
-export interface DataSliceWithCalculated {
-  data: DataFlat;
-  averageData: CalculatedData;
-  summaryData: CalculatedData;
-  rankings: FullRankings;
-}
+export type RussianLossesData = Array<DayResultFlatProcessed>;
+export type RussianLossesPartialData = Array<DayResultFlatPartial>;

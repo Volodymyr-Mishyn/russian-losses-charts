@@ -1,6 +1,6 @@
-import { CalculatedData, DataFlat, EntityNamesEnum } from "../models/loss-entities";
+import { CalculatedData, RussianLossesData, EntityNamesEnum } from '../models/loss-entities';
 
-export function calculateSummary(data: DataFlat): CalculatedData {
+export function calculateSummary(data: RussianLossesData): CalculatedData {
   const averageData: CalculatedData = {
     tank: 0,
     armored_fighting_vehicle: 0,
@@ -26,7 +26,7 @@ export function calculateSummary(data: DataFlat): CalculatedData {
   }, averageData);
 }
 
-export function calculateAverage(data: DataFlat): CalculatedData {
+export function calculateAverage(data: RussianLossesData): CalculatedData {
   const calculatedSummary = calculateSummary(data);
   return Object.keys(calculatedSummary).reduce((accumulated, type) => {
     const typeName = type as EntityNamesEnum;

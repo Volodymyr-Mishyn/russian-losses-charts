@@ -1,4 +1,5 @@
 "use client";
+import Button from '@mui/material/Button';
 import { dateFormatter } from "@/_core/helpers/date-formatter";
 import { EntitySelection } from "../entity-selection/entity-selection";
 import { RangeSelection } from "../range-selection/range-selection";
@@ -16,14 +17,23 @@ export function DisplayConfigurationSelection() {
   };
   return (
     <div className="flex flex-col gap-4">
-      <RangeSelection
-        startDate={startDateObject}
-        endDate={endDateObject}
-        rangeLimit={rangeLimit}
-        onChange={(startDate, endDate) => {
-          updateQueryDates(dateFormatter(startDate), dateFormatter(endDate));
-        }}
-      />
+      <div className="flex flex-row gap-2">
+        <RangeSelection
+          startDate={startDateObject}
+          endDate={endDateObject}
+          rangeLimit={rangeLimit}
+          onChange={(startDate, endDate) => {
+            updateQueryDates(dateFormatter(startDate), dateFormatter(endDate));
+          }}
+        />
+        <Button
+          variant="contained"
+          onClick={() => {
+            updateQueryDates(DATE_OF_INVASION_INSTANCE.toISOString(), new Date().toISOString());
+          }} >
+          Reset dates
+        </Button>
+      </div>
       <EntitySelection selectedEntities={selectedEntities} setSelectedEntities={updateQueryEntities} />
     </div>
   );
