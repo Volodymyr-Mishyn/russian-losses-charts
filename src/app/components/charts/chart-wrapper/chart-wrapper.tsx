@@ -5,7 +5,7 @@ import { ChartContainer } from "../chart-container/chart-container";
 
 export function ChartWrapper({ data }: { data: RussianLossesData }) {
     const [params] = useQueryParams();
-    const { selectedEntities, startDate, endDate } = params;
+    const { selectedEntities, startDate, endDate, granularity } = params;
     const selectedEntitiesSet = new Set(selectedEntities);
     const startDateObject = new Date(startDate);
     const endDateObject = new Date(endDate);
@@ -26,6 +26,6 @@ export function ChartWrapper({ data }: { data: RussianLossesData }) {
         } as DayResultFlatPartial;
     });
     return (
-        <ChartContainer data={mappedData} />
+        <ChartContainer data={mappedData} granularity={granularity} />
     );
 }

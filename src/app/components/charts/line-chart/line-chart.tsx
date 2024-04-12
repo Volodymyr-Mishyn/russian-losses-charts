@@ -23,7 +23,7 @@ ChartJS.register(
     Legend
 );
 
-export const options = {
+export const basicOptions = {
     responsive: true,
     plugins: {
         legend: {
@@ -31,11 +31,12 @@ export const options = {
         },
         title: {
             display: true,
-            text: 'Chart.js Line Chart',
+            text: '',
         },
     },
 };
 
-export function LineChart({ data }: { data: ProcessedChartData }) {
+export function LineChart({ data, title }: { data: ProcessedChartData, title: string }) {
+    const options = { ...basicOptions, plugins: { ...basicOptions.plugins, title: { ...basicOptions.plugins.title, text: title } } };
     return <Line options={options} data={data} />;
 }

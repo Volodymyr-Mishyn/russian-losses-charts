@@ -9,7 +9,7 @@ export default function Home() {
       <div className="p-8 flex flex-col justify-start items-center">
         <DisplayConfigurationSelection />
       </div>
-      <div className="p-6 flex flex-col justify-start items-stretch w-100">
+      <div className="p-8 flex flex-col justify-start items-stretch w-100 ">
         <DisplayData />
       </div>
     </main>
