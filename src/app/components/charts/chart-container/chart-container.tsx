@@ -1,10 +1,10 @@
 import { RussianLossesPartialData } from "../../../../_core/models/loss-entities";
+import { processLossDataToChartData } from "../_helpers/process-loss-data-to-chart-data";
+import { LineChart } from "../line-chart/line-chart";
 
 export function ChartContainer({ data }: { data: RussianLossesPartialData }) {
+    const chartData = processLossDataToChartData(data);
     return (
-        <div>
-            <h1>Chart Container</h1>
-            <span>{JSON.stringify(data)}</span>
-        </div>
+        <LineChart data={chartData} />
     );
 }

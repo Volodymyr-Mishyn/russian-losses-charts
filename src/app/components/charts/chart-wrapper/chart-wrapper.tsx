@@ -26,9 +26,6 @@ export function ChartWrapper({ data }: { data: RussianLossesData }) {
         } as DayResultFlatPartial;
     });
     return (
-        <>
-            <h1>Chart</h1>
-            <ChartContainer data={mappedData} />
-        </>
+        <ChartContainer data={mappedData} />
     );
 }
