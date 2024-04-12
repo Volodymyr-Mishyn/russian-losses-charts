@@ -70,23 +70,10 @@ export type CalculatedData = {
   [key in EntityNamesEnum]: number;
 };
 
-export interface CalculatedDataElement {
-  entityType: EntityNamesEnum;
-  value: number;
-}
-
-export interface CalculatedIncrement {
-  comparedToAverage: number;
-  diffWithAverage: number;
-  average: number;
-  summary: number;
-}
-
 export interface EntityLossFlat {
   name: string;
   total: number;
   increment: number;
-  calculatedIncrement?: CalculatedIncrement;
 }
 
 export type DayResultData = {
@@ -113,3 +100,20 @@ export interface DayResultFlatPartial {
 
 export type RussianLossesData = Array<DayResultFlatProcessed>;
 export type RussianLossesPartialData = Array<DayResultFlatPartial>;
+
+export const ENTITY_COLOUR_MAP: { [key in EntityNamesEnum]: string } = {
+  tank: '#0074D9',
+  armored_fighting_vehicle: '#7FDBFF',
+  artillery_system: '#39CCCC',
+  mlrs: '#3D9970',
+  anti_aircraft: '#2ECC40',
+  plane: '#01FF70',
+  helicopter: '#FFDC00',
+  uav: '#FF851B',
+  cruise_missile: '#FF4136',
+  ship: '#85144b',
+  submarine: '#F012BE',
+  car_cistern: '#B10DC9',
+  special_equipment: '#AAAAAA',
+  personnel: '#FF0000',
+};

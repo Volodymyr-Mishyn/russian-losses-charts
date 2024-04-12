@@ -2,24 +2,28 @@ import { useCallback, useEffect, useState } from 'react';
 import { EntityNamesEnum } from '@/_core/models/loss-entities';
 import { validateDates, validateEntities } from '../../_helpers/query-params/query-params-validation';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { Granularity } from '../../../../_core/models/data-granularity';
 
 type QueryParamsState = {
   selectedEntities: Array<EntityNamesEnum>;
   startDate: string;
   endDate: string;
+  granularity: Granularity;
 };
+
 type UseQueryParamsReturn = [
   QueryParamsState,
   (selectedEntities: Array<EntityNamesEnum>) => void,
-  (startDate: string, endDate: string) => void
+  (startDate: string, endDate: string) => void,
+  (granularity: Granularity) => void
 ];
 
 export function useQueryParams(): UseQueryParamsReturn {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const initialEntities = (searchParams.get('entities')?.split(',') || []) as Array<EntityNamesEnum>;
 
+  const initialEntities = (searchParams.get('entities')?.split(',') || []) as Array<EntityNamesEnum>;
   const [selectedEntities, setSelectedEntities] = useState<EntityNamesEnum[]>(validateEntities(initialEntities) as Array<EntityNamesEnum>);
 
   const startDateQuery = searchParams.get('start') as string | null;
@@ -27,6 +31,9 @@ export function useQueryParams(): UseQueryParamsReturn {
   const [start, end] = validateDates(startDateQuery, endDateQuery);
   const [startDate, setStartDate] = useState<string>(start);
   const [endDate, setEndDate] = useState<string>(end);
+
+  const granularityQuery = searchParams.get('granularity') as Granularity | null;
+  const [granularity, setGranularity] = useState<Granularity>(granularityQuery || 'month');
 
   const createQueryString = useCallback(
     (newParams: Array<[string, string]>) => {
@@ -61,6 +68,14 @@ export function useQueryParams(): UseQueryParamsReturn {
     [createQueryString, pathname, router]
   );
 
+  const updateQueryGranularity = useCallback(
+    (granularity: Granularity) => {
+      const queryString = createQueryString([['granularity', granularity]]);
+      router.push(pathname + '?' + queryString);
+    },
+    [createQueryString, pathname, router]
+  );
+
   useEffect(() => {
     const entities = searchParams.get('entities');
     const queryEntities = entities ? ((entities as string).split(',') as EntityNamesEnum[]) : [];
@@ -73,13 +88,20 @@ export function useQueryParams(): UseQueryParamsReturn {
     setStartDate(start);
     setEndDate(end);
 
+    const granularityQuery = searchParams.get('granularity') as Granularity | null;
+    const granularity = granularityQuery || 'month';
+    setGranularity(granularity);
+
     if (startDateQuery !== start || endDateQuery !== end) {
       updateQueryDates(start, end);
     }
     if (entities !== processedSelectedEntities.join(',')) {
       updateQueryEntities(processedSelectedEntities);
     }
-  }, [searchParams, updateQueryEntities, updateQueryDates]);
+    if (granularityQuery !== granularity) {
+      updateQueryGranularity(granularity);
+    }
+  }, [searchParams, updateQueryEntities, updateQueryDates, updateQueryGranularity]);
 
-  return [{ selectedEntities, startDate, endDate }, updateQueryEntities, updateQueryDates];
+  return [{ selectedEntities, startDate, endDate, granularity }, updateQueryEntities, updateQueryDates, updateQueryGranularity];
 }
