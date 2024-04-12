@@ -29,7 +29,7 @@ export function DisplayConfigurationSelection() {
         <Button
           variant="contained"
           onClick={() => {
-            updateQueryDates(DATE_OF_INVASION_INSTANCE.toISOString(), new Date().toISOString());
+            updateQueryDates(dateFormatter(DATE_OF_INVASION_INSTANCE), dateFormatter(new Date()));
           }} >
           Reset dates
         </Button>
