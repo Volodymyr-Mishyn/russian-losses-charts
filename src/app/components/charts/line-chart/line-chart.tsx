@@ -1,42 +1,37 @@
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
-import { Bar, Line } from 'react-chartjs-2';
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
 import { ProcessedChartData } from "../_models/line-chart-data";
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
 
 export const basicOptions = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: 'top' as const,
-        },
-        title: {
-            display: true,
-            text: '',
-        },
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      position: "top" as const,
     },
+    title: {
+      display: true,
+      text: "",
+    },
+  },
 };
 
-export function LineChart({ data, title }: { data: ProcessedChartData, title: string }) {
-    const options = { ...basicOptions, plugins: { ...basicOptions.plugins, title: { ...basicOptions.plugins.title, text: title } } };
-    return <Line options={options} data={data} />;
+export function LineChart({ data, title }: { data: ProcessedChartData; title: string }) {
+  const options = {
+    ...basicOptions,
+    plugins: { ...basicOptions.plugins, title: { ...basicOptions.plugins.title, text: title } },
+  };
+  return <Line options={options} data={data} />;
 }
