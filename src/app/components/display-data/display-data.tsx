@@ -8,6 +8,7 @@ import { filterDataByQueryParams } from "../_helpers/query-params/filter-data-by
 export function DisplayData({ data }: { data: RussianLossesData }) {
   const [params] = useQueryParams();
   const { granularity } = params;
-  const mappedData = filterDataByQueryParams(data, params);
-  return <ChartContainer data={mappedData} granularity={granularity} />;
+  const filteredData = filterDataByQueryParams(data, params);
+  //   console.log(filteredData);
+  return <ChartContainer data={filteredData} granularity={granularity} />;
 }
