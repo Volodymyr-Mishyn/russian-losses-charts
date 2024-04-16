@@ -31,9 +31,5 @@ export function ChartWrapper({ data }: { data: RussianLossesData }) {
       data: filteredObject,
     } as DayResultFlatPartial;
   });
-  return (
-    <div style={{ minHeight: "60vh" }}>
-      <ChartContainer data={mappedData} granularity={granularity} />
-    </div>
-  );
+  return <ChartContainer data={mappedData} granularity={granularity} />;
 }
