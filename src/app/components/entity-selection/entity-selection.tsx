@@ -35,7 +35,7 @@ export function EntitySelection({ selectedEntities, setSelectedEntities }: Entit
                     }}
                   >
                     <DynamicIcon name={entity} path="/images" size={24} />
-                    <span>{entity}</span>
+                    <span className="hidden md:block">{entity}</span>
                   </ToggleButton>
                 );
               })}
