@@ -1,17 +1,14 @@
-"use client";
 import {
   DayResultData,
   DayResultFlatPartial,
   EntityNamesEnum,
   RussianLossesData,
   RussianLossesPartialData,
-} from "../../../../_core/models/loss-entities";
-import { useQueryParams } from "../../display-configuration-selection/hooks/query-params";
-import { ChartContainer } from "../chart-container/chart-container";
+} from "@/_core/models/loss-entities";
+import { QueryParamsState } from "@/_core/models/query-params";
 
-export function ChartWrapper({ data }: { data: RussianLossesData }) {
-  const [params] = useQueryParams();
-  const { selectedEntities, startDate, endDate, granularity } = params;
+export function filterDataByQueryParams(data: RussianLossesData, params: QueryParamsState): RussianLossesPartialData {
+  const { selectedEntities, startDate, endDate } = params;
   const selectedEntitiesSet = new Set(selectedEntities);
   const startDateObject = new Date(startDate);
   const endDateObject = new Date(endDate);
@@ -31,5 +28,5 @@ export function ChartWrapper({ data }: { data: RussianLossesData }) {
       data: filteredObject,
     } as DayResultFlatPartial;
   });
-  return <ChartContainer data={mappedData} granularity={granularity} />;
+  return mappedData;
 }

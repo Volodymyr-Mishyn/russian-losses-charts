@@ -1,7 +1,13 @@
-import { fetchData } from "../../../_core/data/fetch-data";
-import { ChartWrapper } from "../charts/chart-wrapper/chart-wrapper";
+"use client";
 
-export async function DisplayData() {
-  const data = await fetchData();
-  return <ChartWrapper data={data} />;
+import { RussianLossesData } from "@/_core/models/loss-entities";
+import { useQueryParams } from "../display-configuration-selection/hooks/query-params";
+import { ChartContainer } from "../charts/chart-container/chart-container";
+import { filterDataByQueryParams } from "../_helpers/query-params/filter-data-by-query-params";
+
+export function DisplayData({ data }: { data: RussianLossesData }) {
+  const [params] = useQueryParams();
+  const { granularity } = params;
+  const mappedData = filterDataByQueryParams(data, params);
+  return <ChartContainer data={mappedData} granularity={granularity} />;
 }
