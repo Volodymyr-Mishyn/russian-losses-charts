@@ -12,10 +12,7 @@ export default function Home() {
         <DisplayConfigurationSelection />
       </Paper>
       <Paper elevation={1} className="sm:p-8 p-2 flex-1 flex flex-col justify-start items-stretch m-2">
-        <div
-          className="w-100 flex-1 flex flex-col justify-start items-stretch"
-          style={{ minHeight: "60vh", maxHeight: "90vh" }}
-        >
+        <div className="w-100 flex-1 flex flex-col justify-start items-stretch" style={{ minHeight: "60vh" }}>
           <DataContainer />
         </div>
       </Paper>

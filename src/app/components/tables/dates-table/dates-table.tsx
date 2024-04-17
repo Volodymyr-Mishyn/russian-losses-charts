@@ -3,10 +3,18 @@ import { DataGrid } from "@mui/x-data-grid";
 import { TableData } from "../_models/table-data";
 import { Granularity } from "@/_core/models/data-granularity";
 
-export function Table(data: { data: TableData; granularity: Granularity }) {
+const granularityToSizeDictionary: Record<Granularity, number> = {
+  day: 10,
+  week: 10,
+  month: 10,
+  year: 5,
+};
+
+export function DatesTable(data: { data: TableData; granularity: Granularity }) {
   const { columns, rows } = data.data;
+  const pageSize = granularityToSizeDictionary[data.granularity];
   return (
-    <Box sx={{ height: 400, width: "100%" }}>
+    <Box sx={{ width: "100%" }}>
       <DataGrid
         getRowId={(row) => row.dateField}
         rows={rows}
@@ -14,11 +22,11 @@ export function Table(data: { data: TableData; granularity: Granularity }) {
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 5,
+              pageSize: pageSize,
             },
           },
         }}
-        pageSizeOptions={[5]}
+        pageSizeOptions={[5, 7, 10, 20, 30]}
         disableRowSelectionOnClick
       />
     </Box>

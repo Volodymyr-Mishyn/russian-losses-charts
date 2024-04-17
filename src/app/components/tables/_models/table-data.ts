@@ -1,10 +1,10 @@
 export interface TableColumn {
   field: string;
   headerName: string;
+  flex: number;
 }
 
 export interface TableRow {
-  dateField: string;
   [key: string]: any;
 }
 

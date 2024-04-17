@@ -3,11 +3,18 @@ import { EntityNamesEnum, RussianLossesPartialData } from "@/_core/models/loss-e
 import { TableColumn, TableData, TableRow } from "../_models/table-data";
 import { getDateByGranularity } from "../../_helpers/get-date-by-granularity";
 
-const dateDictionary: Record<Granularity, string> = {
+const columnDateFormatDictionary: Record<Granularity, string> = {
   day: "Date",
   week: "Week diapason",
   month: "Month",
   year: "Year",
+};
+
+const averageDateFormatDictionary: Record<Granularity, string> = {
+  day: " per day",
+  week: " per week",
+  month: " per month",
+  year: " per year",
 };
 
 export function processLossDataToTableData(data: RussianLossesPartialData, granularity: Granularity): TableData {
@@ -17,11 +24,11 @@ export function processLossDataToTableData(data: RussianLossesPartialData, granu
       columns: [],
     };
   }
-  const leadingColumn = { field: "dateField", headerName: dateDictionary[granularity] };
+  const leadingColumn = { field: "dateField", headerName: columnDateFormatDictionary[granularity], flex: 1 };
   const columns: Array<TableColumn> = [];
   const presentEntitiesKeys = Object.keys(data[0].data) as Array<EntityNamesEnum>;
   presentEntitiesKeys.forEach((entity) => {
-    columns.push({ field: entity, headerName: entity });
+    columns.push({ field: entity, flex: 1, headerName: entity });
   });
 
   const aggregation: Record<string, number[]> = {};
@@ -38,7 +45,7 @@ export function processLossDataToTableData(data: RussianLossesPartialData, granu
   });
 
   const rows: Array<TableRow> = [];
-  Object.entries(aggregation).forEach((value, key) => {
+  Object.entries(aggregation).forEach((value) => {
     const row: TableRow = { dateField: value[0] };
     value[1].forEach((entityValue, index) => {
       row[presentEntitiesKeys[index]] = entityValue;
@@ -48,5 +55,22 @@ export function processLossDataToTableData(data: RussianLossesPartialData, granu
   return {
     columns: [leadingColumn, ...columns],
     rows,
+  };
+}
+
+export function calculateAverageTableData(tableData: TableData, granularity: Granularity): TableData {
+  const { columns, rows } = tableData;
+  const dataColumns = columns.filter((column) => column.field !== "dateField");
+  const averageRow: TableRow = { averageField: "Average" };
+  dataColumns.forEach((column) => {
+    if (column.field !== "dateField") {
+      const sum = rows.reduce((acc, row) => acc + row[column.field], 0);
+      const average = Number((sum / rows.length).toFixed(2));
+      averageRow[column.field] = `${average} ${averageDateFormatDictionary[granularity]}`;
+    }
+  });
+  return {
+    columns: dataColumns,
+    rows: [averageRow],
   };
 }
