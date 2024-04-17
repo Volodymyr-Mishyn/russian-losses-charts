@@ -2,6 +2,7 @@ import { Granularity } from "@/_core/models/data-granularity";
 import { EntityNamesEnum, RussianLossesPartialData } from "@/_core/models/loss-entities";
 import { TableColumn, TableData, TableRow } from "../_models/table-data";
 import { getDateByGranularity } from "../../_helpers/get-date-by-granularity";
+import { DynamicIcon } from "@/components/dynamic-icon/dynamic-icon";
 
 const columnDateFormatDictionary: Record<Granularity, string> = {
   day: "Date",
@@ -28,7 +29,13 @@ export function processLossDataToTableData(data: RussianLossesPartialData, granu
   const columns: Array<TableColumn> = [];
   const presentEntitiesKeys = Object.keys(data[0].data) as Array<EntityNamesEnum>;
   presentEntitiesKeys.forEach((entity) => {
-    columns.push({ field: entity, flex: 1, headerName: entity });
+    const headerTemplate = (
+      <div className="flex flex-row gap-1">
+        <DynamicIcon name={entity} path="/images" size={24} />
+        <div className="hidden md:block">{entity}</div>
+      </div>
+    );
+    columns.push({ field: entity, flex: 1, headerName: entity, renderHeader: () => headerTemplate });
   });
 
   const aggregation: Record<string, number[]> = {};

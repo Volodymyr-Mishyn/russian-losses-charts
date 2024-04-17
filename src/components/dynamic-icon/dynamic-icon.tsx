@@ -1,5 +1,4 @@
 import SvgIcon from "@mui/material/SvgIcon";
-import { ElementType, useEffect, useState } from "react";
 
 export interface DynamicIconProps {
   name: string;

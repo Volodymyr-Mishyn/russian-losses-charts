@@ -2,6 +2,7 @@ export interface TableColumn {
   field: string;
   headerName: string;
   flex: number;
+  renderHeader?: (column: any) => JSX.Element;
 }
 
 export interface TableRow {
