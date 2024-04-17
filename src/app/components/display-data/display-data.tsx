@@ -23,7 +23,7 @@ export function DisplayData({ data }: { data: RussianLossesData }) {
         <Tab label="Chart"></Tab>
         <Tab label="Table"></Tab>
       </Tabs>
-      <div className="h-full flex-1 p-1 m-1 md:p-2 md:m-2" style={{ minHeight: "50vh" }}>
+      <div className=" flex flex-col h-full flex-1 p-1 m-1 md:p-2 md:m-2" style={{ minHeight: "50vh" }}>
         {value === 0 && <ChartContainer data={filteredData} granularity={granularity} />}
         {value === 1 && <TableContainer data={filteredData} granularity={granularity} />}
       </div>
