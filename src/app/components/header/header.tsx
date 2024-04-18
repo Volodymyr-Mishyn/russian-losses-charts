@@ -1,7 +1,7 @@
 export function Header() {
   return (
     <header className="flex items-center justify-between p-4 bg-blue-500 text-white">
-      <h1 className="text-2xl">Russian losses according to Ministry of Defense of Ukraine</h1>
+      <h1 className="sm:text-2xl">Russian losses according to Ministry of Defense of Ukraine</h1>
       <nav>
         <ul className="flex space-x-4">
           <li>
