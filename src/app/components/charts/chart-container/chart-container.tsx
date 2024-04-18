@@ -9,7 +9,15 @@ import Fullscreen from "@mui/icons-material/Fullscreen";
 import CloseIcon from "@mui/icons-material/Close";
 import { AppBar, Dialog, IconButton, Paper, Toolbar, Typography } from "@mui/material";
 
-export function ChartContainer({ data, granularity }: { data: RussianLossesPartialData; granularity: Granularity }) {
+export function ChartContainer({
+  data,
+  granularity,
+  allowDialog,
+}: {
+  data: RussianLossesPartialData;
+  granularity: Granularity;
+  allowDialog: boolean;
+}) {
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -35,30 +43,36 @@ export function ChartContainer({ data, granularity }: { data: RussianLossesParti
   }
   title += ` by ${granularity}`;
   const chart = <LineChart data={chartData} title={title} />;
+  const dialogButtonContainer = allowDialog ? (
+    <div className="flex flex-row items-center justify-start p-1">
+      <Button onClick={handleClickOpen} color="primary" startIcon={<Fullscreen />}>
+        Fullscreen
+      </Button>
+    </div>
+  ) : null;
+  const dialogContainer = allowDialog ? (
+    <Dialog fullScreen open={open} onClose={handleClose} className="flex flex-col justify-start items-stretch">
+      <AppBar className="flex flex-none" position={"relative"}>
+        <Toolbar className="flex flex-row justify-end">
+          <IconButton edge="end" color="inherit" onClick={handleClose} aria-label="close">
+            <CloseIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <div className="flex-1 flex flex-col justify-stretch items-stretch p-2">
+        <Paper elevation={1} className="flex-1 p-2">
+          {chart}
+        </Paper>
+      </div>
+    </Dialog>
+  ) : null;
   return (
     <>
       <div className=" flex-1 flex flex-col justify-start items-stretch h-full">
         <div className="flex-1">{chart}</div>
-        <div className="flex flex-row items-center justify-start p-1">
-          <Button onClick={handleClickOpen} color="primary" startIcon={<Fullscreen />}>
-            Fullscreen
-          </Button>
-        </div>
       </div>
-      <Dialog fullScreen open={open} onClose={handleClose} className="flex flex-col justify-start items-stretch">
-        <AppBar className="flex flex-none" position={"relative"}>
-          <Toolbar className="flex flex-row justify-end">
-            <IconButton edge="end" color="inherit" onClick={handleClose} aria-label="close">
-              <CloseIcon />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-        <div className="flex-1 flex flex-col justify-stretch items-stretch p-2">
-          <Paper elevation={1} className="flex-1 p-2">
-            {chart}
-          </Paper>
-        </div>
-      </Dialog>
+      {dialogButtonContainer}
+      {dialogContainer}
     </>
   );
 }
