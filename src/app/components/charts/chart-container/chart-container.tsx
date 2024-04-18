@@ -55,7 +55,7 @@ export function ChartContainer({ data, granularity }: { data: RussianLossesParti
         </AppBar>
         <div className="flex-1 flex flex-col justify-stretch items-stretch p-2">
           <Paper elevation={1} className="flex-1 p-2">
-            {chart}{" "}
+            {chart}
           </Paper>
         </div>
       </Dialog>

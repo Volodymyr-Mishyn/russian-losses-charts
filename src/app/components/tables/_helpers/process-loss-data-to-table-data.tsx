@@ -39,8 +39,13 @@ export function processLossDataToTableData(data: RussianLossesPartialData, granu
   });
 
   const aggregation: Record<string, number[]> = {};
+  const dateToKeyMap = new Map<string, Date>();
   data.forEach((dayResult) => {
-    const key = getDateByGranularity(new Date(dayResult.date), granularity);
+    const originalDate = new Date(dayResult.date);
+    const key = getDateByGranularity(originalDate, granularity);
+    if (!dateToKeyMap.has(key)) {
+      dateToKeyMap.set(key, originalDate);
+    }
     presentEntitiesKeys.forEach((entity) => {
       const increment = dayResult.data[entity]?.increment || 0;
       if (!aggregation[key]) {
@@ -52,12 +57,20 @@ export function processLossDataToTableData(data: RussianLossesPartialData, granu
   });
 
   const rows: Array<TableRow> = [];
-  Object.entries(aggregation).forEach((value) => {
-    const row: TableRow = { dateField: value[0] };
-    value[1].forEach((entityValue, index) => {
+  Object.entries(aggregation).forEach(([key, value]) => {
+    const row: TableRow = { dateField: key };
+    value.forEach((entityValue, index) => {
       row[presentEntitiesKeys[index]] = entityValue;
     });
     rows.push(row);
+  });
+  rows.sort((a, b) => {
+    const dateA = dateToKeyMap.get(a.dateField);
+    const dateB = dateToKeyMap.get(b.dateField);
+    if (dateA && dateB) {
+      return dateB.getTime() - dateA.getTime();
+    }
+    return 0;
   });
   return {
     columns: [leadingColumn, ...columns],
