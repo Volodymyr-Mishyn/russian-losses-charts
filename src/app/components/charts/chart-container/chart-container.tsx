@@ -7,16 +7,17 @@ import { format } from "date-fns";
 import Button from "@mui/material/Button";
 import Fullscreen from "@mui/icons-material/Fullscreen";
 import CloseIcon from "@mui/icons-material/Close";
-import { AppBar, Dialog, IconButton, Paper, Toolbar, Typography } from "@mui/material";
+import { AppBar, Dialog, IconButton, Paper, Toolbar } from "@mui/material";
+import { Share } from "../../share/share";
 
 export function ChartContainer({
   data,
   granularity,
-  allowDialog,
+  functionality,
 }: {
   data: RussianLossesPartialData;
   granularity: Granularity;
-  allowDialog: boolean;
+  functionality: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
@@ -43,14 +44,15 @@ export function ChartContainer({
   }
   title += ` by ${granularity}`;
   const chart = <LineChart data={chartData} title={title} />;
-  const dialogButtonContainer = allowDialog ? (
-    <div className="flex flex-row items-center justify-start p-1">
+  const buttonsContainer = functionality ? (
+    <div className="flex flex-row items-center justify-start p-1 gap-4">
       <Button onClick={handleClickOpen} color="primary" startIcon={<Fullscreen />}>
         Fullscreen
       </Button>
+      <Share url="chart"></Share>
     </div>
   ) : null;
-  const dialogContainer = allowDialog ? (
+  const dialogContainer = functionality ? (
     <Dialog fullScreen open={open} onClose={handleClose} className="flex flex-col justify-start items-stretch">
       <AppBar className="flex flex-none" position={"relative"}>
         <Toolbar className="flex flex-row justify-end">
@@ -68,10 +70,10 @@ export function ChartContainer({
   ) : null;
   return (
     <>
-      <div className=" flex-1 flex flex-col justify-start items-stretch h-full">
+      <div className=" flex-1 flex flex-col justify-start items-stretch h-full gap-2">
         <div className="flex-1">{chart}</div>
+        <div> {buttonsContainer}</div>
       </div>
-      {dialogButtonContainer}
       {dialogContainer}
     </>
   );

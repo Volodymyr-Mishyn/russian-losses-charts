@@ -23,9 +23,9 @@ export function DisplayData({ data }: { data: RussianLossesData }) {
         <Tab label="Chart"></Tab>
         <Tab label="Table"></Tab>
       </Tabs>
-      <div className=" flex flex-col h-full flex-1 p-1 m-1 md:p-2 md:m-2" style={{ minHeight: "50vh" }}>
-        {value === 0 && <ChartContainer data={filteredData} granularity={granularity} allowDialog={true} />}
-        {value === 1 && <TableContainer data={filteredData} granularity={granularity} />}
+      <div className=" flex flex-col h-full flex-1 p-1 m-1 md:p-2 md:m-2" style={{ minHeight: "65vh" }}>
+        {value === 0 && <ChartContainer data={filteredData} granularity={granularity} functionality={true} />}
+        {value === 1 && <TableContainer data={filteredData} granularity={granularity} functionality={true} />}
       </div>
     </Box>
   );

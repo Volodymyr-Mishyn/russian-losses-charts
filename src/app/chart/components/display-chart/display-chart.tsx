@@ -8,5 +8,5 @@ export function DisplayChart({ data }: { data: RussianLossesData }) {
   const [params] = useQueryParams();
   const { granularity } = params;
   const filteredData = filterDataByQueryParams(data, params);
-  return <ChartContainer data={filteredData} granularity={granularity} allowDialog={false} />;
+  return <ChartContainer data={filteredData} granularity={granularity} functionality={false} />;
 }
