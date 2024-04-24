@@ -4,16 +4,15 @@ import Paper from "@mui/material/Paper";
 import { Header } from "./components/header/header";
 import { DataContainer } from "./components/data-container/data-container";
 import { Footer } from "./components/footer/footer";
-import { Locale } from "../../i18n-config";
+import { DictionaryElement, Locale } from "../../i18n-config";
 import { getDictionary } from "@/get-dictionary";
 
 export default async function Home({ params: { lang } }: { params: { lang: Locale } }) {
   const dictionary = await getDictionary(lang);
-  console.log(dictionary.title);
+  const footerDictionary = dictionary.footer as DictionaryElement;
   return (
     <main className="flex min-h-screen flex-col justify-start items-stretch w-full h-full overflow-hidden">
       <Header title={dictionary.title} fullVersion={dictionary.fullVersion} />
-      {lang}
       <Paper elevation={1} className="sm:p-8 p-2 flex flex-col justify-start items-center sm:m-2">
         <DisplayConfigurationSelection />
       </Paper>
@@ -22,7 +21,7 @@ export default async function Home({ params: { lang } }: { params: { lang: Local
           <DataContainer />
         </div>
       </Paper>
-      <Footer />
+      <Footer dictionary={footerDictionary} />
     </main>
   );
 }
