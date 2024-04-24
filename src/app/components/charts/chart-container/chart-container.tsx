@@ -10,6 +10,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { AppBar, Dialog, IconButton, Paper, Toolbar } from "@mui/material";
 import { Share } from "../../share/share";
 import { Embed } from "../../embed/embed";
+import { HomeButton } from "../../home-button/home-button";
 
 function createTitle(data: RussianLossesPartialData, granularity: Granularity): string {
   let title = `Losses of `;
@@ -56,9 +57,10 @@ export function ChartContainer({
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
     const currentUrl = window.location.origin;
-    const chartUrl = `${currentUrl}/chart?${query.toString()}`;
-    setChartUrl(chartUrl);
+    setChartUrl(`${currentUrl}/chart?${query.toString()}`);
   }, []);
+
+  const toHomeContainer = !functionality ? <HomeButton /> : null;
 
   const buttonsContainer = functionality ? (
     <div className="flex flex-row items-center justify-start p-1 gap-4">
@@ -68,7 +70,9 @@ export function ChartContainer({
       {chartUrl && <Share url={chartUrl}></Share>}
     </div>
   ) : null;
+
   const embedContainer = functionality && chartUrl ? <Embed url={chartUrl} className="flex-1"></Embed> : null;
+
   const dialogContainer = functionality ? (
     <Dialog fullScreen open={open} onClose={handleClose} className="flex flex-col justify-start items-stretch">
       <AppBar className="flex flex-none" position={"relative"}>
@@ -89,6 +93,7 @@ export function ChartContainer({
   return (
     <>
       <div className=" flex-1 flex flex-col justify-start items-stretch h-full gap-2">
+        {toHomeContainer}
         <div className="flex-1">{chart}</div>
         <div className="flex flex-col lg:flex-row gap-4">
           <div className="flex-none">{buttonsContainer}</div>
