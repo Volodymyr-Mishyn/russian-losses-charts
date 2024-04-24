@@ -1,0 +1,89 @@
+{
+  "entities": {
+    "tank": "Танк",
+    "armored_fighting_vehicle": "Броньований бойовий транспортер",
+    "artillery_system": "Артилерійська система",
+    "mlrs": "РСЗВ",
+    "anti_aircraft": "Зенітна установка",
+    "plane": "Літак",
+    "helicopter": "Гелікоптер",
+    "uav": "БПЛА",
+    "cruise_missile": "Крилаті ракети",
+    "ship": "Корабель",
+    "submarine": "Підводний човен",
+    "car_cistern": "Автоцистерна",
+    "special_equipment": "Спеціальне обладнання",
+    "personnel": "Особовий склад"
+  },
+  "title": "Втрати Росії згідно Міністерства оборони України",
+  "fullVersion": "Повна версія",
+  "metaData": {
+    "title": "Діаграма втрат Росії в Україні",
+    "description": "Налаштовувана діаграма, що показує втрати Росії в Україні"
+  },
+  "diapasonSelection": {
+    "startDate": "Дата початку",
+    "endDate": "Дата закінчення",
+    "resetDates": "Скинути дати"
+  },
+  "granularitySelection": {
+    "day": "День",
+    "week": "Тиждень",
+    "month": "Місяць",
+    "year": "Рік"
+  },
+  "chart": {
+    "tabTitle": "Діаграма",
+    "titleStart": "Втрати",
+    "titleDiapasonStart": "за період від",
+    "titleDiapasonSeparator": "до",
+    "titleDiapasonGranularity": "по",
+    "chartFullScreen": "На весь екран"
+  },
+  "table": {
+    "tabTitle": "Таблиця",
+    "tableAverage": {
+      "title": "Середні втрати за",
+      "granularity": {
+        "day": "на день",
+        "week": "на тиждень",
+        "month": "на місяць",
+        "year": "на рік"
+      }
+    },
+    "tableTotal": {
+      "title": "Загальні втрати за"
+    }
+  },
+  "footer": {
+    "fullVersion": "Повна версія з даними Oryx доступна за адресою:",
+    "considerSupporting": "Підтримайте армію і народ України, зробивши пожертву:",
+    "developedBy": "Розроблено",
+    "supportOptions": {
+      "armedForces": {
+        "title": "Збройні сили України",
+        "shortSummary": "Державні, військові"
+      },
+      "comeBackAlive": {
+        "title": "Повернись живим",
+        "shortSummary": "Військові, недержавні, медичні"
+      },
+      "united24": {
+        "title": "UNITED24",
+        "shortSummary": "Державні, військові, медичні, гуманітарні, освіта і наука"
+      },
+      "ukrainianHumanitarianFund": {
+        "title": "Фонд гуманітарної допомоги України",
+        "shortSummary": "Недержавні, гуманітарні, медичні"
+      },
+      "prytulaFoundation": {
+        "title": "Благодійний фонд Сергія Притули",
+        "shortSummary": "Недержавні, гуманітарні, медичні"
+      },
+      "ministryOfHealthcare": {
+        "title": "Міністерство охорони здоров'я України",
+        "shortSummary": "Державні, медичні"
+      }
+    }
+  }
+}

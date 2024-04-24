@@ -1,6 +1,6 @@
 import { use, useEffect, useMemo, useState } from "react";
-import { Granularity } from "../../../../_core/models/data-granularity";
-import { RussianLossesPartialData } from "../../../../_core/models/loss-entities";
+import { Granularity } from "../../../../../_core/models/data-granularity";
+import { RussianLossesPartialData } from "../../../../../_core/models/loss-entities";
 import { processLossDataToChartData } from "../_helpers/process-loss-data-to-chart-data";
 import { LineChart } from "../line-chart/line-chart";
 import { format } from "date-fns";

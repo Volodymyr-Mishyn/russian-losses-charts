@@ -1,0 +1,89 @@
+{
+  "entities": {
+    "tank": "Tank",
+    "armored_fighting_vehicle": "Armored Fighting Vehicle",
+    "artillery_system": "Artillery System",
+    "mlrs": "MLRS",
+    "anti_aircraft": "Anti Aircraft",
+    "plane": "Plane",
+    "helicopter": "Helicopter",
+    "uav": "UAV",
+    "cruise_missile": "Cruise Missile",
+    "ship": "Ship",
+    "submarine": "Submarine",
+    "car_cistern": "Car Cistern",
+    "special_equipment": "Special Equipment",
+    "personnel": "Personnel"
+  },
+  "title": "Russian losses according to Ministry of Defense of Ukraine",
+  "fullVersion": "Full version",
+  "metaData": {
+    "title": "Russian losses in Ukraine chart",
+    "description": "Configurable chart showing russian losses in Ukraine"
+  },
+  "diapasonSelection": {
+    "startDate": "Start date",
+    "endDate": "End date",
+    "resetDates": "Reset dates"
+  },
+  "granularitySelection": {
+    "day": "Day",
+    "week": "Week",
+    "month": "Month",
+    "year": "Year"
+  },
+  "chart": {
+    "tabTitle": "Chart",
+    "titleStart": "Losses of",
+    "titleDiapasonStart": "in range from",
+    "titleDiapasonSeparator": "to",
+    "titleDiapasonGranularity": "by",
+    "chartFullScreen": "Fullscreen"
+  },
+  "table": {
+    "tabTitle": "Table",
+    "tableAverage": {
+      "title": "Average losses by",
+      "granularity": {
+        "day": "per day",
+        "week": "per week",
+        "month": "per month",
+        "year": "per year"
+      }
+    },
+    "tableTotal": {
+      "title": "Total losses by"
+    }
+  },
+  "footer": {
+    "fullVersion": "Full version, with Oryx data is available at:",
+    "considerSupporting": "Consider supporting Ukrainian army and people by donating to:",
+    "developedBy": "Developed by",
+    "supportOptions": {
+      "armedForces": {
+        "title": "Armed Forces of Ukraine",
+        "shortSummary": "Government, Military"
+      },
+      "comeBackAlive": {
+        "title": "Come Back Alive",
+        "shortSummary": "Military, Non-government, Medical"
+      },
+      "united24": {
+        "title": "UNITED24",
+        "shortSummary": "Government, Military, Medical, Humanitarian, Education and Science"
+      },
+      "ukrainianHumanitarianFund": {
+        "title": "The Ukraine Humanitarian Fund",
+        "shortSummary": "Non-government, Humanitarian, Medical"
+      },
+      "prytulaFoundation": {
+        "title": "Serhiy Prytula Charity Foundation",
+        "shortSummary": "Military, Non-government, Medical"
+      },
+      "ministryOfHealthcare": {
+        "title": "Ministry of Healthcare of Ukraine",
+        "shortSummary": "Government, Humanitarian, Medical"
+      }
+    }
+  }
+}

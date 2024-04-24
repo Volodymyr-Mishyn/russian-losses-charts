@@ -1,8 +1,8 @@
 "use client";
 import { RussianLossesData } from "@/_core/models/loss-entities";
-import { filterDataByQueryParams } from "@/app/components/_helpers/query-params/filter-data-by-query-params";
-import { ChartContainer } from "@/app/components/charts/chart-container/chart-container";
-import { useQueryParams } from "@/app/components/_hooks/query-params";
+import { filterDataByQueryParams } from "@/app/[lang]/components/_helpers/query-params/filter-data-by-query-params";
+import { ChartContainer } from "@/app/[lang]/components/charts/chart-container/chart-container";
+import { useQueryParams } from "@/app/[lang]/components/_hooks/query-params";
 
 export function DisplayChart({ data }: { data: RussianLossesData }) {
   const [params] = useQueryParams();

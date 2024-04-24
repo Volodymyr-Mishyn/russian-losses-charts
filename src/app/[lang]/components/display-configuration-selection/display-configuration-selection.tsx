@@ -6,7 +6,7 @@ import { RangeSelection } from "../range-selection/range-selection";
 import { useQueryParams } from "../_hooks/query-params";
 import { DATE_OF_INVASION_INSTANCE } from "@/_core/constants/russian-invasion-date";
 import { GranularitySelection } from "../granularity-selection/granularity-selection";
-import { Granularity } from "../../../_core/models/data-granularity";
+import { Granularity } from "../../../../_core/models/data-granularity";
 
 export function DisplayConfigurationSelection() {
   const [params, updateQueryEntities, updateQueryDates, updateGranularity] = useQueryParams();

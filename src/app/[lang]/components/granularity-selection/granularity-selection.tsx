@@ -1,6 +1,6 @@
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { Granularity } from "../../../_core/models/data-granularity";
+import { Granularity } from "../../../../_core/models/data-granularity";
 
 interface GranularitySelectionProps {
   selectedGranularity: Granularity;

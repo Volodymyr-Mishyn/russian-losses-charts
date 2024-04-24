@@ -1,5 +1,9 @@
-import { Granularity } from "../../../../_core/models/data-granularity";
-import { ENTITY_COLOUR_MAP, EntityNamesEnum, RussianLossesPartialData } from "../../../../_core/models/loss-entities";
+import { Granularity } from "../../../../../_core/models/data-granularity";
+import {
+  ENTITY_COLOUR_MAP,
+  EntityNamesEnum,
+  RussianLossesPartialData,
+} from "../../../../../_core/models/loss-entities";
 import { getDateByGranularity } from "../../_helpers/get-date-by-granularity";
 import { ProcessedChartData, ProcessedChartDataset } from "../_models/line-chart-data";
 
