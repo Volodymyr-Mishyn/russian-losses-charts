@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { EntityNamesEnum } from "@/_core/models/loss-entities";
-import { validateDates, validateEntities } from "../../_helpers/query-params/query-params-validation";
+import { validateDates, validateEntities } from "../_helpers/query-params/query-params-validation";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Granularity } from "../../../../_core/models/data-granularity";
+import { Granularity } from "../../../_core/models/data-granularity";
 import { QueryParamsState } from "@/_core/models/query-params";
 
 type UseQueryParamsReturn = [
@@ -47,7 +47,7 @@ export function useQueryParams(): UseQueryParamsReturn {
       const validEntities = validateEntities(selectedEntities);
       const entities = validEntities.join(",");
       const queryString = createQueryString([["entities", entities]]);
-      router.push(pathname + "?" + queryString);
+      router.push(pathname + "?" + queryString, { scroll: false });
     },
     [createQueryString, pathname, router]
   );
@@ -59,7 +59,7 @@ export function useQueryParams(): UseQueryParamsReturn {
         ["start", validStartDate],
         ["end", validEndDate],
       ]);
-      router.push(pathname + "?" + queryString);
+      router.push(pathname + "?" + queryString, { scroll: false });
     },
     [createQueryString, pathname, router]
   );
@@ -67,7 +67,7 @@ export function useQueryParams(): UseQueryParamsReturn {
   const updateQueryGranularity = useCallback(
     (granularity: Granularity) => {
       const queryString = createQueryString([["granularity", granularity]]);
-      router.push(pathname + "?" + queryString);
+      router.push(pathname + "?" + queryString, { scroll: false });
     },
     [createQueryString, pathname, router]
   );

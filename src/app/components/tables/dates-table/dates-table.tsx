@@ -10,25 +10,29 @@ const granularityToSizeDictionary: Record<Granularity, number> = {
   year: 5,
 };
 
-export function DatesTable(data: { data: TableData; granularity: Granularity }) {
+export function DatesTable(data: { data: TableData; granularity: Granularity; title: string }) {
+  const { title } = data;
   const { columns, rows } = data.data;
   const pageSize = granularityToSizeDictionary[data.granularity];
   return (
-    <Box sx={{ width: "100%" }}>
-      <DataGrid
-        getRowId={(row) => row.dateField}
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: pageSize,
+    <>
+      <h2 className="text-lg font-bold text-center">{title}</h2>
+      <Box sx={{ width: "100%" }}>
+        <DataGrid
+          getRowId={(row) => row.dateField}
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: pageSize,
+              },
             },
-          },
-        }}
-        pageSizeOptions={[5, 7, 10, 20, 30]}
-        disableRowSelectionOnClick
-      />
-    </Box>
+          }}
+          pageSizeOptions={[5, 7, 10, 20, 30]}
+          disableRowSelectionOnClick
+        />
+      </Box>
+    </>
   );
 }

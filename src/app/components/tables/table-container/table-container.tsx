@@ -5,7 +5,6 @@ import { calculateAverageTableData, processLossDataToTableData } from "../_helpe
 import { DatesTable } from "../dates-table/dates-table";
 import { AverageTable } from "../average-table/average-table";
 import { Share } from "../../share/share";
-
 export function TableContainer({
   data,
   granularity,
@@ -17,6 +16,8 @@ export function TableContainer({
 }) {
   const tableData = useMemo(() => processLossDataToTableData(data, granularity), [data, granularity]);
   const averageTableData = useMemo(() => calculateAverageTableData(tableData, granularity), [tableData, granularity]);
+  const averageTableTitle = `Average losses by ${granularity}`;
+  const tableDataTitle = `Losses by ${granularity}`;
   const shareContainer = functionality ? (
     <div className="flex p-2">
       <Share url="table"></Share>
@@ -24,8 +25,8 @@ export function TableContainer({
   ) : null;
   return (
     <div className="flex flex-col justify-start items-stretch gap-6">
-      <AverageTable data={averageTableData} granularity={granularity} />
-      <DatesTable data={tableData} granularity={granularity} />
+      <AverageTable data={averageTableData} granularity={granularity} title={averageTableTitle} />
+      <DatesTable data={tableData} granularity={granularity} title={tableDataTitle} />
       {shareContainer}
     </div>
   );
