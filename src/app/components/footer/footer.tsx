@@ -87,7 +87,7 @@ const contactBlock = (
 const fullVersionBlock = (
   <div className="text-center">
     Full version, with Oryx data is available at:
-    <IconButton href="https://russian-losses.in.ua/en/statistics/ministry-of-defense" target="_blank">
+    <IconButton href="https://russian-losses.in.ua" target="_blank">
       <DynamicIcon name="personnel" path="/images" size={24} />
     </IconButton>
   </div>
