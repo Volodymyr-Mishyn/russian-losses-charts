@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { use, useEffect, useMemo, useState } from "react";
 import { Granularity } from "../../../../_core/models/data-granularity";
 import { RussianLossesPartialData } from "../../../../_core/models/loss-entities";
 import { processLossDataToChartData } from "../_helpers/process-loss-data-to-chart-data";
@@ -9,6 +9,21 @@ import Fullscreen from "@mui/icons-material/Fullscreen";
 import CloseIcon from "@mui/icons-material/Close";
 import { AppBar, Dialog, IconButton, Paper, Toolbar } from "@mui/material";
 import { Share } from "../../share/share";
+import { Embed } from "../../embed/embed";
+
+function createTitle(data: RussianLossesPartialData, granularity: Granularity): string {
+  let title = `Losses of `;
+  if (data.length > 0) {
+    title += Object.keys(data[0].data).join(", ");
+    title +=
+      " in range of dates " +
+      format(data[0].date, "yyyy-MM-dd") +
+      " to " +
+      format(data[data.length - 1].date, "yyyy-MM-dd");
+  }
+  title += ` by ${granularity}`;
+  return title;
+}
 
 export function ChartContainer({
   data,
@@ -20,6 +35,7 @@ export function ChartContainer({
   functionality: boolean;
 }) {
   const [open, setOpen] = useState(false);
+  const [chartUrl, setChartUrl] = useState("");
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -33,25 +49,26 @@ export function ChartContainer({
       processLossDataToChartData(data, { fill: true, hasBackgroundColour: true, hasBorderColour: true }, granularity),
     [data, granularity]
   );
-  let title = `Losses of `;
-  if (data.length > 0) {
-    title += Object.keys(data[0].data).join(", ");
-    title +=
-      " in range of dates " +
-      format(data[0].date, "yyyy-MM-dd") +
-      " to " +
-      format(data[data.length - 1].date, "yyyy-MM-dd");
-  }
-  title += ` by ${granularity}`;
+  const title = createTitle(data, granularity);
+
   const chart = <LineChart data={chartData} title={title} />;
+
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+    const currentUrl = window.location.origin;
+    const chartUrl = `${currentUrl}/chart?${query.toString()}`;
+    setChartUrl(chartUrl);
+  }, []);
+
   const buttonsContainer = functionality ? (
     <div className="flex flex-row items-center justify-start p-1 gap-4">
       <Button onClick={handleClickOpen} color="primary" startIcon={<Fullscreen />}>
         Fullscreen
       </Button>
-      <Share url="chart"></Share>
+      {chartUrl && <Share url={chartUrl}></Share>}
     </div>
   ) : null;
+  const embedContainer = functionality && chartUrl ? <Embed url={chartUrl} className="flex-1"></Embed> : null;
   const dialogContainer = functionality ? (
     <Dialog fullScreen open={open} onClose={handleClose} className="flex flex-col justify-start items-stretch">
       <AppBar className="flex flex-none" position={"relative"}>
@@ -68,11 +85,15 @@ export function ChartContainer({
       </div>
     </Dialog>
   ) : null;
+
   return (
     <>
       <div className=" flex-1 flex flex-col justify-start items-stretch h-full gap-2">
         <div className="flex-1">{chart}</div>
-        <div> {buttonsContainer}</div>
+        <div className="flex flex-col lg:flex-row gap-4">
+          <div className="flex-none">{buttonsContainer}</div>
+          {embedContainer}
+        </div>
       </div>
       {dialogContainer}
     </>

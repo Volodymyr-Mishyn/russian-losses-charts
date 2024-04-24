@@ -31,12 +31,7 @@ export function Share(props: { url: string }) {
     }
     setOpen(false);
   };
-
-  const query = new URLSearchParams(window.location.search);
-  const currentUrl = window.location.origin;
-  const chartUrl = `${currentUrl}/${props.url}?${query.toString()}`;
-  const encodedUrl = encodeURIComponent(chartUrl);
-
+  const encodedUrl = encodeURIComponent(props.url);
   const socialShareButtons = Object.keys(SOCIAL_SHARE_OPTIONS).map((key) => {
     const option = SOCIAL_SHARE_OPTIONS[key];
     return (
@@ -47,13 +42,14 @@ export function Share(props: { url: string }) {
   });
 
   return (
-    <div className="flex flex-row flex-wrap items-center justify-between gap-2">
+    <div className="flex flex-row items-center justify-between gap-2">
       {socialShareButtons}
       <IconButton
         key={"copy"}
         onClick={() => {
-          navigator.clipboard.writeText(chartUrl);
-          setOpen(true);
+          navigator.clipboard.writeText(props.url).then(() => {
+            setOpen(true);
+          });
         }}
       >
         <CopyIcon />
