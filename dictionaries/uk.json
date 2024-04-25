@@ -1,18 +1,18 @@
 {
   "entities": {
-    "tank": "Танк",
-    "armored_fighting_vehicle": "Броньований бойовий транспортер",
-    "artillery_system": "Артилерійська система",
+    "tank": "Танки",
+    "armored_fighting_vehicle": "Бронетехніка",
+    "artillery_system": "Артилерійські системи",
     "mlrs": "РСЗВ",
-    "anti_aircraft": "Зенітна установка",
-    "plane": "Літак",
-    "helicopter": "Гелікоптер",
+    "anti_aircraft": "Зенітні установки",
+    "plane": "Літаки",
+    "helicopter": "Гелікоптери",
     "uav": "БПЛА",
     "cruise_missile": "Крилаті ракети",
-    "ship": "Корабель",
-    "submarine": "Підводний човен",
-    "car_cistern": "Автоцистерна",
-    "special_equipment": "Спеціальне обладнання",
+    "ship": "Кораблі",
+    "submarine": "Підводні човни",
+    "car_cistern": "Авто та автоцистерни",
+    "special_equipment": "Спеціальна техніка",
     "personnel": "Особовий склад"
   },
   "title": "Втрати Росії згідно Міністерства оборони України",
@@ -32,13 +32,26 @@
     "month": "Місяць",
     "year": "Рік"
   },
+  "toasts": {
+    "linkCopied": "Посилання скопійовано в буфер обміну",
+    "iframeCodeCopied": "Код для вставки скопійовано в буфер обміну"
+  },
+  "embed": {
+    "embedAsIframe": "Вставити як iframe"
+  },
   "chart": {
     "tabTitle": "Графік",
     "titleStart": "Втрати",
     "titleDiapasonStart": "за період від",
     "titleDiapasonSeparator": "до",
     "titleDiapasonGranularity": "по",
-    "chartFullScreen": "На весь екран"
+    "chartFullScreen": "На весь екран",
+    "granularity": {
+      "day": "по днях",
+      "week": "по тижнях",
+      "month": "по місяцях",
+      "year": "по роках"
+    }
   },
   "table": {
     "tabTitle": "Таблиця",

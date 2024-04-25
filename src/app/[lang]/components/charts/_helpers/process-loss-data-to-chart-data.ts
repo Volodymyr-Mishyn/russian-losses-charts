@@ -16,7 +16,8 @@ export interface ProcessedChartDataOptions {
 export function processLossDataToChartData(
   data: RussianLossesPartialData,
   options: ProcessedChartDataOptions = { fill: true, hasBackgroundColour: true, hasBorderColour: true },
-  granularity: Granularity
+  granularity: Granularity,
+  dictionary: Record<string, string>
 ): ProcessedChartData {
   if (!data.length) {
     return {
@@ -30,7 +31,7 @@ export function processLossDataToChartData(
   const presentEntitiesKeys = Object.keys(data[0].data) as Array<EntityNamesEnum>;
   presentEntitiesKeys.forEach((entity) => {
     datasets[entity] = {
-      label: entity,
+      label: dictionary[entity],
       data: [],
       borderColor: options.hasBorderColour ? ENTITY_COLOUR_MAP[entity] : "rgba(0, 0, 0, 0)",
       backgroundColor: options.hasBackgroundColour ? ENTITY_COLOUR_MAP[entity] : "rgba(0, 0, 0, 0)",

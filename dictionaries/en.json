@@ -32,13 +32,26 @@
     "month": "Month",
     "year": "Year"
   },
+  "toasts": {
+    "linkCopied": "Link copied to clipboard",
+    "iframeCodeCopied": "Iframe code copied to clipboard"
+  },
+  "embed": {
+    "embedAsIframe": "Embed as iframe"
+  },
   "chart": {
     "tabTitle": "Chart",
     "titleStart": "Losses of",
-    "titleDiapasonStart": "in range from",
+    "titleDiapasonStart": "in range of dates from",
     "titleDiapasonSeparator": "to",
     "titleDiapasonGranularity": "by",
-    "chartFullScreen": "Fullscreen"
+    "chartFullScreen": "Fullscreen",
+    "granularity": {
+      "day": "by day",
+      "week": "by week",
+      "month": "by month",
+      "year": "by year"
+    }
   },
   "table": {
     "tabTitle": "Table",

@@ -12,18 +12,25 @@ import { Share } from "../../share/share";
 import { Embed } from "../../embed/embed";
 import { HomeButton } from "../../home-button/home-button";
 import { DataContext } from "../../_store/data-store";
+import { DictionaryElement } from "@/i18n-config";
 
-function createTitle(data: RussianLossesPartialData, granularity: Granularity): string {
-  let title = `Losses of `;
+function createTitle(data: RussianLossesPartialData, granularity: Granularity, dictionary: DictionaryElement): string {
+  const chartDictionary = dictionary.chart as Record<string, string>;
+  const granularityDictionary = (dictionary.chart as DictionaryElement).granularity as Record<string, string>;
+  const entitiesDictionary = dictionary.entities as Record<string, string>;
+  const entitiesString = Object.keys(data[0].data)
+    .map((entity) => entitiesDictionary[entity])
+    .join(", ");
+  let title = `${chartDictionary.titleStart} `;
   if (data.length > 0) {
-    title += Object.keys(data[0].data).join(", ");
+    title += entitiesString;
     title +=
-      " in range of dates " +
+      ` ${chartDictionary.titleDiapasonStart} ` +
       format(data[0].date, "yyyy-MM-dd") +
-      " to " +
+      ` ${chartDictionary.titleDiapasonSeparator} ` +
       format(data[data.length - 1].date, "yyyy-MM-dd");
   }
-  title += ` by ${granularity}`;
+  title += ` ${granularityDictionary[granularity]}`;
   return title;
 }
 
@@ -40,13 +47,20 @@ export function ChartContainer({ functionality }: { functionality: boolean }) {
   const handleClose = () => {
     setOpen(false);
   };
+  const entitiesDictionary = dictionary.entities as Record<string, string>;
 
   const chartData = useMemo(
     () =>
-      processLossDataToChartData(data, { fill: true, hasBackgroundColour: true, hasBorderColour: true }, granularity),
-    [data, granularity]
+      processLossDataToChartData(
+        data,
+        { fill: true, hasBackgroundColour: true, hasBorderColour: true },
+        granularity,
+        entitiesDictionary
+      ),
+    [data, granularity, entitiesDictionary]
   );
-  const title = createTitle(data, granularity);
+
+  const title = createTitle(data, granularity, dictionary);
 
   const chart = <LineChart data={chartData} title={title} />;
 
@@ -55,13 +69,14 @@ export function ChartContainer({ functionality }: { functionality: boolean }) {
     const currentUrl = window.location.origin;
     setChartUrl(`${currentUrl}/chart?${query.toString()}`);
   }, []);
+  const chartDictionary = dictionary.chart as Record<string, string>;
 
   const toHomeContainer = !functionality ? <HomeButton /> : null;
 
   const buttonsContainer = functionality ? (
     <div className="flex flex-row items-center justify-start p-1 gap-4">
       <Button onClick={handleClickOpen} color="primary" startIcon={<Fullscreen />}>
-        Fullscreen
+        {chartDictionary.chartFullScreen}
       </Button>
       {chartUrl && <Share url={chartUrl}></Share>}
     </div>
