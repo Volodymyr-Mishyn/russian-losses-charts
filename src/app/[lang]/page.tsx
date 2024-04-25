@@ -13,7 +13,7 @@ export default async function Home({ params: { lang } }: { params: { lang: Local
   const footerDictionary = dictionary.footer as DictionaryElement;
   return (
     <main className="flex min-h-screen flex-col justify-start items-stretch w-full h-full overflow-hidden">
-      <Header title={dictionary.title} fullVersion={dictionary.fullVersion} />
+      <Header dictionary={dictionary} language={lang} />
       <Paper elevation={1} className="sm:p-8 p-2 flex flex-col justify-start items-center sm:m-2">
         <DisplayConfigurationSelectionContextProvider dictionary={dictionary} lang={lang}>
           <DisplayConfigurationSelection />

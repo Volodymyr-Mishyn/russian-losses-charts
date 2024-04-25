@@ -13,7 +13,6 @@ import { DisplayDataContext } from "../display-data-context/display-data-context
 export function DisplayData({ data, dictionary }: { data: RussianLossesData; dictionary: DictionaryElement }) {
   const [params] = useQueryParams();
   const [value, setValue] = useState(0);
-
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
