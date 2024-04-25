@@ -4,7 +4,7 @@ import { DisplayTable } from "./components/display-table/display-table";
 import { Locale } from "@/i18n-config";
 import { getDictionary } from "@/get-dictionary";
 
-export default async function Table({ lang }: { lang: Locale }) {
+export default async function Table({ params: { lang } }: { params: { lang: Locale } }) {
   const data = await fetchData();
   const dictionary = await getDictionary(lang);
   return (
