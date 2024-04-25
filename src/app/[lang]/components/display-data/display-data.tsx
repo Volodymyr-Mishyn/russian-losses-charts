@@ -8,6 +8,7 @@ import { TableContainer } from "../tables/table-container/table-container";
 import { Tab, Tabs, Box } from "@mui/material";
 import { SyntheticEvent, useState } from "react";
 import { DictionaryElement } from "@/i18n-config";
+import { DisplayDataContext } from "../display-data-context/display-data-context";
 
 export function DisplayData({ data, dictionary }: { data: RussianLossesData; dictionary: DictionaryElement }) {
   const [params] = useQueryParams();
@@ -27,8 +28,10 @@ export function DisplayData({ data, dictionary }: { data: RussianLossesData; dic
         <Tab label={tableTitle}></Tab>
       </Tabs>
       <div className=" flex flex-col h-full flex-1 p-1 m-1 md:p-2 md:m-2" style={{ minHeight: "65vh" }}>
-        {value === 0 && <ChartContainer data={filteredData} granularity={granularity} functionality={true} />}
-        {value === 1 && <TableContainer data={filteredData} granularity={granularity} functionality={true} />}
+        <DisplayDataContext data={filteredData} dictionary={dictionary} granularity={granularity}>
+          {value === 0 && <ChartContainer functionality={true} />}
+          {value === 1 && <TableContainer functionality={true} />}
+        </DisplayDataContext>
       </div>
     </Box>
   );

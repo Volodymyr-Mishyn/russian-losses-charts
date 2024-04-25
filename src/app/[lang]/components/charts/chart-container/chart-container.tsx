@@ -1,4 +1,4 @@
-import { use, useEffect, useMemo, useState } from "react";
+import { use, useContext, useEffect, useMemo, useState } from "react";
 import { Granularity } from "../../../../../_core/models/data-granularity";
 import { RussianLossesPartialData } from "../../../../../_core/models/loss-entities";
 import { processLossDataToChartData } from "../_helpers/process-loss-data-to-chart-data";
@@ -11,6 +11,7 @@ import { AppBar, Dialog, IconButton, Paper, Toolbar } from "@mui/material";
 import { Share } from "../../share/share";
 import { Embed } from "../../embed/embed";
 import { HomeButton } from "../../home-button/home-button";
+import { DataContext } from "../../_store/data-store";
 
 function createTitle(data: RussianLossesPartialData, granularity: Granularity): string {
   let title = `Losses of `;
@@ -26,17 +27,12 @@ function createTitle(data: RussianLossesPartialData, granularity: Granularity): 
   return title;
 }
 
-export function ChartContainer({
-  data,
-  granularity,
-  functionality,
-}: {
-  data: RussianLossesPartialData;
-  granularity: Granularity;
-  functionality: boolean;
-}) {
+export function ChartContainer({ functionality }: { functionality: boolean }) {
   const [open, setOpen] = useState(false);
   const [chartUrl, setChartUrl] = useState("");
+  const context = useContext(DataContext);
+  const { data, dictionary, granularity } = context;
+
   const handleClickOpen = () => {
     setOpen(true);
   };
