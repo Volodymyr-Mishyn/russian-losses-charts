@@ -1,0 +1,114 @@
+{
+  "entities": {
+    "tank": "戦車",
+    "armored_fighting_vehicle": "装甲戦闘車両",
+    "artillery_system": "砲兵システム",
+    "mlrs": "多連装ロケット砲",
+    "anti_aircraft": "対空砲",
+    "plane": "飛行機",
+    "helicopter": "ヘリコプター",
+    "uav": "無人航空機(UAV)",
+    "cruise_missile": "巡航ミサイル",
+    "ship": "船",
+    "submarine": "潜水艦",
+    "car_cistern": "タンクローリー",
+    "special_equipment": "特殊装備",
+    "personnel": "人員"
+  },
+  "title": "ウクライナ国防省によるロシアの損失",
+  "fullVersion": "フルバージョン",
+  "metaData": {
+    "title": "ウクライナにおけるロシアの損失のチャート",
+    "description": "ウクライナにおけるロシアの損失を示す設定可能なチャート"
+  },
+  "diapasonSelection": {
+    "startDate": "開始日",
+    "endDate": "終了日",
+    "resetDates": "日付のリセット"
+  },
+  "granularitySelection": {
+    "day": "日",
+    "week": "週",
+    "month": "月",
+    "year": "年"
+  },
+  "toasts": {
+    "linkCopied": "リンクをクリップボードにコピーしました",
+    "iframeCodeCopied": "Iframeコードをクリップボードにコピーしました"
+  },
+  "embed": {
+    "embedAsIframe": "Iframeとして埋め込む"
+  },
+  "chart": {
+    "tabTitle": "チャート",
+    "titleStart": "損失の",
+    "titleDiapasonStart": "期間の範囲:",
+    "titleDiapasonSeparator": "から",
+    "titleDiapasonGranularity": "による",
+    "chartFullScreen": "全画面表示",
+    "granularity": {
+      "day": "日ごと",
+      "week": "週ごと",
+      "month": "月ごと",
+      "year": "年ごと"
+    }
+  },
+  "table": {
+    "tabTitle": "テーブル",
+    "tableAverage": {
+      "title": "平均損失:",
+      "granularityPer": {
+        "day": "日ごと",
+        "week": "週ごと",
+        "month": "月ごと",
+        "year": "年ごと"
+      }
+    },
+    "tableTotal": {
+      "title": "総損失:",
+      "granularityColumn": {
+        "day": "日付",
+        "week": "週間",
+        "month": "月",
+        "year": "年"
+      }
+    },
+    "granularity": {
+      "day": "日",
+      "week": "週",
+      "month": "月",
+      "year": "年"
+    }
+  },
+  "footer": {
+    "fullVersion": "Oryxデータを含む完全版はこちら:",
+    "considerSupporting": "ウクライナ軍および民間への寄付をご検討ください:",
+    "developedBy": "開発者:",
+    "supportOptions": {
+      "armedForces": {
+        "title": "ウクライナ軍",
+        "shortSummary": "政府、軍事"
+      },
+      "comeBackAlive": {
+        "title": "生きて帰る",
+        "shortSummary": "軍事、非政府、医療"
+      },
+      "united24": {
+        "title": "UNITED24",
+        "shortSummary": "政府、軍事、医療、人道、教育科学"
+      },
+      "ukrainianHumanitarianFund": {
+        "title": "ウクライナ人道基金",
+        "shortSummary": "非政府、人道、医療"
+      },
+      "prytulaFoundation": {
+        "title": "セルギー・プリトゥラ慈善基金",
+        "shortSummary": "軍事、非政府、医療"
+      },
+      "ministryOfHealthcare": {
+        "title": "ウクライナ保健省",
+        "shortSummary": "政府、人道、医療"
+      }
+    }
+  }
+}

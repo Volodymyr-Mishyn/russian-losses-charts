@@ -1,0 +1,114 @@
+{
+  "entities": {
+    "tank": "Char",
+    "armored_fighting_vehicle": "Véhicule de combat blindé",
+    "artillery_system": "Système d'artillerie",
+    "mlrs": "MLRS",
+    "anti_aircraft": "Anti-aérien",
+    "plane": "Avion",
+    "helicopter": "Hélicoptère",
+    "uav": "UAV",
+    "cruise_missile": "Missile de croisière",
+    "ship": "Navire",
+    "submarine": "Sous-marin",
+    "car_cistern": "Citerne automobile",
+    "special_equipment": "Équipement spécial",
+    "personnel": "Personnel"
+  },
+  "title": "Pertes russes selon le Ministère de la Défense de l'Ukraine",
+  "fullVersion": "Version complète",
+  "metaData": {
+    "title": "Graphique des pertes russes en Ukraine",
+    "description": "Graphique configurable montrant les pertes russes en Ukraine"
+  },
+  "diapasonSelection": {
+    "startDate": "Date de début",
+    "endDate": "Date de fin",
+    "resetDates": "Réinitialiser les dates"
+  },
+  "granularitySelection": {
+    "day": "Jour",
+    "week": "Semaine",
+    "month": "Mois",
+    "year": "Année"
+  },
+  "toasts": {
+    "linkCopied": "Lien copié dans le presse-papiers",
+    "iframeCodeCopied": "Code Iframe copié dans le presse-papiers"
+  },
+  "embed": {
+    "embedAsIframe": "Intégrer comme iframe"
+  },
+  "chart": {
+    "tabTitle": "Graphique",
+    "titleStart": "Pertes de",
+    "titleDiapasonStart": "dans la plage de dates du",
+    "titleDiapasonSeparator": "au",
+    "titleDiapasonGranularity": "par",
+    "chartFullScreen": "Plein écran",
+    "granularity": {
+      "day": "par jour",
+      "week": "par semaine",
+      "month": "par mois",
+      "year": "par an"
+    }
+  },
+  "table": {
+    "tabTitle": "Tableau",
+    "tableAverage": {
+      "title": "Pertes moyennes par",
+      "granularityPer": {
+        "day": "par jour",
+        "week": "par semaine",
+        "month": "par mois",
+        "year": "par an"
+      }
+    },
+    "tableTotal": {
+      "title": "Pertes totales par",
+      "granularityColumn": {
+        "day": "Date",
+        "week": "Diapason de semaine",
+        "month": "Mois",
+        "year": "Année"
+      }
+    },
+    "granularity": {
+      "day": "jour",
+      "week": "semaine",
+      "month": "mois",
+      "year": "année"
+    }
+  },
+  "footer": {
+    "fullVersion": "Version complète, avec les données Oryx disponible à l'adresse :",
+    "considerSupporting": "Envisagez de soutenir l'armée et le peuple ukrainiens en faisant un don à :",
+    "developedBy": "Développé par",
+    "supportOptions": {
+      "armedForces": {
+        "title": "Forces armées de l'Ukraine",
+        "shortSummary": "Gouvernement, Militaire"
+      },
+      "comeBackAlive": {
+        "title": "Revenir vivant",
+        "shortSummary": "Militaire, Non-gouvernemental, Médical"
+      },
+      "united24": {
+        "title": "UNITED24",
+        "shortSummary": "Gouvernement, Militaire, Médical, Humanitaire, Éducation et Science"
+      },
+      "ukrainianHumanitarianFund": {
+        "title": "Le Fonds humanitaire ukrainien",
+        "shortSummary": "Non-gouvernemental, Humanitaire, Médical"
+      },
+      "prytulaFoundation": {
+        "title": "Fondation caritative Serhiy Prytula",
+        "shortSummary": "Militaire, Non-gouvernemental, Médical"
+      },
+      "ministryOfHealthcare": {
+        "title": "Ministère de la Santé de l'Ukraine",
+        "shortSummary": "Gouvernement, Humanitaire, Médical"
+      }
+    }
+  }
+}
