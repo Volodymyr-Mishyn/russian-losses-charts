@@ -57,7 +57,7 @@
     "tabTitle": "Table",
     "tableAverage": {
       "title": "Average losses by",
-      "granularity": {
+      "granularityPer": {
         "day": "per day",
         "week": "per week",
         "month": "per month",
@@ -65,7 +65,19 @@
       }
     },
     "tableTotal": {
-      "title": "Total losses by"
+      "title": "Total losses per",
+      "granularityColumn": {
+        "day": "Date",
+        "week": "Week diapason",
+        "month": "Month",
+        "year": "Year"
+      }
+    },
+    "granularity": {
+      "day": "day",
+      "week": "week",
+      "month": "month",
+      "year": "year"
     }
   },
   "footer": {

@@ -56,8 +56,8 @@
   "table": {
     "tabTitle": "Таблиця",
     "tableAverage": {
-      "title": "Середні втрати за",
-      "granularity": {
+      "title": "Середні втрати на",
+      "granularityPer": {
         "day": "на день",
         "week": "на тиждень",
         "month": "на місяць",
@@ -65,7 +65,19 @@
       }
     },
     "tableTotal": {
-      "title": "Загальні втрати за"
+      "title": "Загальні втрати за",
+      "granularityColumn": {
+        "day": "Дата",
+        "week": "Діапазон тижня",
+        "month": "Місяць",
+        "year": "Рік"
+      }
+    },
+    "granularity": {
+      "day": "день",
+      "week": "тиждень",
+      "month": "місяць",
+      "year": "рік"
     }
   },
   "footer": {

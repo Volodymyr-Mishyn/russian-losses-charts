@@ -9,10 +9,19 @@ import { DataContext } from "../../_store/data-store";
 export function TableContainer({ functionality }: { functionality: boolean }) {
   const context = useContext(DataContext);
   const { data, dictionary, granularity } = context;
-  const tableData = useMemo(() => processLossDataToTableData(data, granularity), [data, granularity]);
-  const averageTableData = useMemo(() => calculateAverageTableData(tableData, granularity), [tableData, granularity]);
-  const averageTableTitle = `Average losses by ${granularity}`;
-  const tableDataTitle = `Losses by ${granularity}`;
+  const tableData = useMemo(
+    () => processLossDataToTableData(data, granularity, dictionary),
+    [data, granularity, dictionary]
+  );
+  const averageTableData = useMemo(
+    () => calculateAverageTableData(tableData, granularity, dictionary),
+    [tableData, granularity, dictionary]
+  );
+  const averageTableTitleFromDictionary = (dictionary.table as any).tableAverage.title;
+  const tableGranularity = (dictionary.table as any).granularity;
+  const averageTableTitle = `${averageTableTitleFromDictionary} ${tableGranularity[granularity]}`;
+  const tableDataTitleFromDictionary = (dictionary.table as any).tableTotal.title;
+  const tableDataTitle = `${tableDataTitleFromDictionary} ${tableGranularity[granularity]}`;
   const toHomeContainer = !functionality ? <HomeButton /> : null;
 
   const shareContainer = functionality ? (

@@ -3,28 +3,21 @@ import { EntityNamesEnum, RussianLossesPartialData } from "@/_core/models/loss-e
 import { TableColumn, TableData, TableRow } from "../_models/table-data";
 import { getDateByGranularity } from "../../_helpers/get-date-by-granularity";
 import { DynamicIcon } from "@/components/dynamic-icon/dynamic-icon";
+import { DictionaryElement } from "@/i18n-config";
 
-const columnDateFormatDictionary: Record<Granularity, string> = {
-  day: "Date",
-  week: "Week diapason",
-  month: "Month",
-  year: "Year",
-};
-
-const averageDateFormatDictionary: Record<Granularity, string> = {
-  day: " per day",
-  week: " per week",
-  month: " per month",
-  year: " per year",
-};
-
-export function processLossDataToTableData(data: RussianLossesPartialData, granularity: Granularity): TableData {
+export function processLossDataToTableData(
+  data: RussianLossesPartialData,
+  granularity: Granularity,
+  dictionary: DictionaryElement
+): TableData {
   if (!data.length) {
     return {
       rows: [],
       columns: [],
     };
   }
+  const entitiesNames = dictionary.entities as Record<EntityNamesEnum, string>;
+  const columnDateFormatDictionary = (dictionary.table as any).tableTotal.granularityColumn;
   const leadingColumn = { field: "dateField", headerName: columnDateFormatDictionary[granularity], flex: 1 };
   const columns: Array<TableColumn> = [];
   const presentEntitiesKeys = Object.keys(data[0].data) as Array<EntityNamesEnum>;
@@ -32,7 +25,7 @@ export function processLossDataToTableData(data: RussianLossesPartialData, granu
     const headerTemplate = (
       <div className="flex flex-row gap-1">
         <DynamicIcon name={entity} path="/images" size={24} />
-        <div className="hidden md:block">{entity}</div>
+        <div className="hidden md:block">{entitiesNames[entity]}</div>
       </div>
     );
     columns.push({ field: entity, flex: 1, headerName: entity, renderHeader: () => headerTemplate });
@@ -78,10 +71,15 @@ export function processLossDataToTableData(data: RussianLossesPartialData, granu
   };
 }
 
-export function calculateAverageTableData(tableData: TableData, granularity: Granularity): TableData {
+export function calculateAverageTableData(
+  tableData: TableData,
+  granularity: Granularity,
+  dictionary: DictionaryElement
+): TableData {
   const { columns, rows } = tableData;
   const dataColumns = columns.filter((column) => column.field !== "dateField");
   const averageRow: TableRow = { averageField: "Average" };
+  const averageDateFormatDictionary = (dictionary.table as any).tableAverage.granularityPer;
   dataColumns.forEach((column) => {
     if (column.field !== "dateField") {
       const sum = rows.reduce((acc, row) => acc + row[column.field], 0);
