@@ -53,7 +53,7 @@ export function ChartContainer({ functionality }: { functionality: boolean }) {
     () =>
       processLossDataToChartData(
         data,
-        { fill: true, hasBackgroundColour: true, hasBorderColour: true },
+        { fill: false, hasBackgroundColour: true, hasBorderColour: true },
         granularity,
         entitiesDictionary
       ),
@@ -68,7 +68,8 @@ export function ChartContainer({ functionality }: { functionality: boolean }) {
     const query = new URLSearchParams(window.location.search);
     const currentUrl = window.location.origin;
     setChartUrl(`${currentUrl}/chart?${query.toString()}`);
-  }, []);
+  }, [data]);
+
   const chartDictionary = dictionary.chart as Record<string, string>;
 
   const toHomeContainer = !functionality ? <HomeButton /> : null;

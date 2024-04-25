@@ -15,7 +15,7 @@ export interface ProcessedChartDataOptions {
 
 export function processLossDataToChartData(
   data: RussianLossesPartialData,
-  options: ProcessedChartDataOptions = { fill: true, hasBackgroundColour: true, hasBorderColour: true },
+  options: ProcessedChartDataOptions = { fill: false, hasBackgroundColour: true, hasBorderColour: true },
   granularity: Granularity,
   dictionary: Record<string, string>
 ): ProcessedChartData {
