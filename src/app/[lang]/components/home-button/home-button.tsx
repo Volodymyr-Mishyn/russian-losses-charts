@@ -7,7 +7,8 @@ export function HomeButton() {
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
     const currentUrl = window.location.origin;
-    setBaseUrl(`${currentUrl}?${query.toString()}`);
+    const locale = window.location.pathname.split("/")[1];
+    setBaseUrl(`${currentUrl}/${locale}?${query.toString()}`);
   }, []);
   return (
     <div className="flex flex-row items-center justify-start p-1 gap-4">

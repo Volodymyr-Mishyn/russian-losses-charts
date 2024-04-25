@@ -67,7 +67,8 @@ export function ChartContainer({ functionality }: { functionality: boolean }) {
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
     const currentUrl = window.location.origin;
-    setChartUrl(`${currentUrl}/chart?${query.toString()}`);
+    const currentPath = window.location.pathname;
+    setChartUrl(`${currentUrl}${currentPath}/chart?${query.toString()}`);
   }, [data]);
 
   const chartDictionary = dictionary.chart as Record<string, string>;
