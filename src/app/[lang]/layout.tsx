@@ -25,17 +25,6 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
     description: metaData.description,
   };
 }
-export async function generateStaticParams() {
-  return [
-    { lang: "en" },
-    { lang: "uk" },
-    { lang: "de" },
-    { lang: "es" },
-    { lang: "fr" },
-    { lang: "it" },
-    { lang: "ja" },
-  ];
-}
 
 export default function Layout({
   children,
