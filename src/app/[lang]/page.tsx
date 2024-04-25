@@ -8,7 +8,7 @@ import { DictionaryElement, Locale } from "../../i18n-config";
 import { getDictionary } from "@/get-dictionary";
 import { DisplayConfigurationSelectionContextProvider } from "./components/display-configuration-selection/display-configuration-selection-context-provider";
 
-export default async function Home({ params: { lang } }: { params: { lang: Locale } }) {
+export default async function HomePage({ params: { lang } }: { params: { lang: Locale } }) {
   const dictionary = await getDictionary(lang);
   const footerDictionary = dictionary.footer as DictionaryElement;
   return (
