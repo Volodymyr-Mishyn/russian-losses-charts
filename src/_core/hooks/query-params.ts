@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { EntityNamesEnum } from "@/_core/models/loss-entities";
-import { validateDates, validateEntities } from "../_helpers/query-params/query-params-validation";
+import {
+  validateDates,
+  validateEntities,
+} from "../../app/[lang]/components/_helpers/query-params/query-params-validation";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Granularity } from "../../../../_core/models/data-granularity";
+import { Granularity } from "../models/data-granularity";
 import { QueryParamsState } from "@/_core/models/query-params";
 
 type UseQueryParamsReturn = [

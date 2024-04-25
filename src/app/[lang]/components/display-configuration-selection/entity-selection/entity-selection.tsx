@@ -2,6 +2,9 @@ import { DynamicIcon } from "@/components/dynamic-icon/dynamic-icon";
 import { ENTITIES_MAP, EntityNamesEnum } from "@/_core/models/loss-entities";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { DisplayConfigurationContext } from "../_store/display-configuration.context";
+import { useContext } from "react";
+import { DictionaryElement } from "@/i18n-config";
 interface EntitySelectionProps {
   selectedEntities: Array<EntityNamesEnum>;
   setSelectedEntities: (selectedEntities: Array<EntityNamesEnum>) => void;
@@ -16,6 +19,7 @@ export function EntitySelection({ selectedEntities, setSelectedEntities }: Entit
       setSelectedEntities([...selectedEntities, entity]);
     }
   }
+  const context = useContext(DisplayConfigurationContext);
 
   return (
     <div className="flex flex-row flex-wrap gap-3">
@@ -24,6 +28,7 @@ export function EntitySelection({ selectedEntities, setSelectedEntities }: Entit
           <div key={category} className="flex flex-row">
             <ToggleButtonGroup aria-label="entities">
               {entities.map((entity) => {
+                const entityName = (context.dictionary.entities as DictionaryElement)[entity] as string;
                 return (
                   <ToggleButton
                     value="check"
@@ -35,7 +40,7 @@ export function EntitySelection({ selectedEntities, setSelectedEntities }: Entit
                     }}
                   >
                     <DynamicIcon name={entity} path="/images" size={24} />
-                    <span className="hidden md:block">{entity}</span>
+                    <span className="hidden md:block">{entityName}</span>
                   </ToggleButton>
                 );
               })}
