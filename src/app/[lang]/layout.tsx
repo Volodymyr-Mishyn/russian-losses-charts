@@ -8,6 +8,7 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { Locale } from "@/i18n-config";
 import { getDictionary } from "@/get-dictionary";
+import { GoogleAnalytics } from "@/components/google-analutics/google-analytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,6 +36,7 @@ export default function Layout({
 }>) {
   return (
     <html lang={lang}>
+      <GoogleAnalytics />
       <body className={inter.className}>{children}</body>
     </html>
   );
